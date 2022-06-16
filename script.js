@@ -1,11 +1,11 @@
 const listOfCards = [
-    "borossparrot.gif", 
-    "explodyparrot.gif", 
-    "fiestaparrot.gif", 
-    "metalparrot.gif", 
-    "revertitparrot.gif", 
-    "tripletsparrot.gif", 
-    "unicornparrot.gif"
+    "p1.gif", 
+    "p2.gif", 
+    "p3.gif", 
+    "p4.gif", 
+    "p5.gif", 
+    "p6.gif", 
+    "p7.gif"
 ]
 let numberOfCards = prompt("Quantas cartas você quer utilizar?");
 let chosenCards = [];
@@ -20,16 +20,36 @@ function checkNumberOfCards(){
 checkNumberOfCards()
 
 function chooseCards(){
-
     for(let i=0; i<numberOfCards/2; i++){
         chosenCards.push(listOfCards[i]);
         chosenCards.push(listOfCards[i]);
     }
     chosenCards.sort(sortCards)
+    displayCards()
 }
 
 function sortCards() {
 	return Math.random() - 0.5; 
-    console.log(chosenCards)
 }
 
+function displayCards(){
+    const ul = document.querySelector("ul");
+
+    for (let i=0; i<chosenCards.length; i++){
+        const templateLi = `<li class="display-face" onclick="chooseCard(this)"><img class="front-face" src="./img/front.png"><img class="second-face hidden" src="./img/${chosenCards[i]}"></li>`
+        ul.innerHTML += templateLi;
+    }
+}
+
+function chooseCard(element){
+
+    element.classList.toggle('back-face');
+
+    const secondFace = element.querySelector('.second-face')
+    secondFace.classList.remove('hidden')
+
+    const displayFace = element.querySelector('.front-face')
+    displayFace.classList.add('hidden')
+
+
+}

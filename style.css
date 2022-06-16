@@ -55,3 +55,15 @@ li img{
     height: 100px;
 
 }
+
+.hidden{
+    display:none;
+}
+
+.display-face{
+    transition: all .5s;
+}
+
+.back-face{
+    transform: rotateY(180deg);
+}
