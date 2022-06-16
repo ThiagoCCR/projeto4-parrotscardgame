@@ -22,6 +22,14 @@ checkNumberOfCards()
 function chooseCards(){
 
     for(let i=0; i<numberOfCards/2; i++){
-        
+        chosenCards.push(listOfCards[i]);
+        chosenCards.push(listOfCards[i]);
     }
+    chosenCards.sort(sortCards)
 }
+
+function sortCards() {
+	return Math.random() - 0.5; 
+    console.log(chosenCards)
+}
+
