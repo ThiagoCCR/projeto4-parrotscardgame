@@ -75,7 +75,6 @@ function chooseCard(element, index) {
         secondCard = undefined;
     } else {
         setTimeout(function () {
-            console.log('oi')
             secondFace.classList.add('hidden');
             img.classList.remove('hidden');
             element.classList.toggle('back-face');
