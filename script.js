@@ -51,6 +51,7 @@ function displayCards() {
 
 function startTimer(){
     let seconds=0;
+    document.querySelector(".timer").classList.toggle("show-timer");
     idInterval = setInterval(function countTime(){
     seconds++;
     document.querySelector('.seconds').innerHTML = seconds;

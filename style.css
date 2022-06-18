@@ -36,11 +36,18 @@ h1 {
     background-color: black;
     position: absolute;
     top: 20px;
-    right: 0px;
+    right: -80px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-evenly;
+    transition: all 500ms linear;
+    opacity: 0;
+}
+
+.show-timer{
+    opacity: 1;
+    right: 0;
 }
 
 .timer p{
