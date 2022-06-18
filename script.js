@@ -15,6 +15,7 @@ let numberOfCheckedCards = 0;
 let firstCardElement;
 let numberOfPlays = 0;
 let idInterval;
+let lockCards = false;
 
 
 function checkNumberOfCards() {
@@ -49,24 +50,30 @@ function displayCards() {
     startTimer()
 }
 
-function startTimer(){
-    let seconds=0;
+function startTimer() {
+    let seconds = 0;
     document.querySelector(".timer").classList.toggle("show-timer");
-    idInterval = setInterval(function countTime(){
-    seconds++;
-    document.querySelector('.seconds').innerHTML = seconds;
+    idInterval = setInterval(function countTime() {
+        seconds++;
+        document.querySelector('.seconds').innerHTML = seconds;
     }, 1000);
 }
-
 
 function chooseCard(element, index) {
     const secondFace = element.querySelector('.second-face');
     const img = element.querySelector('img');
 
-    if (index === firstCard || index === secondCard) {
+    if(lockCards===true){
+        console.log('oi')
         return;
     }
 
+    lockCards = true;
+    if (index === firstCard || index === secondCard) {
+        return;
+
+    }
+    
     numberOfPlays += 1;
     secondFace.classList.remove('hidden');
     img.classList.add('hidden');
@@ -75,6 +82,7 @@ function chooseCard(element, index) {
     if (firstCard === undefined) {
         firstCard = index;
         firstCardElement = element;
+        lockCards = false;
         return;
 
     } else {
@@ -106,6 +114,7 @@ function countFlippedCards() {
         alert(`Você ganhou em ${numberOfPlays} jogadas!`)
         clearInterval(idInterval);
         idInterval = undefined;
-
     }
+
+    lockCards = false;
 }
