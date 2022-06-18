@@ -13,6 +13,7 @@ let firstCard;
 let secondCard;
 let numberOfCheckedCards = 0;
 let firstCardElement;
+let numberOfPlays = 0;
 
 
 function checkNumberOfCards() {
@@ -54,6 +55,7 @@ function chooseCard(element, index) {
         return;
     }
 
+    numberOfPlays += 1;
     secondFace.classList.remove('hidden');
     img.classList.add('hidden');
     element.classList.add('back-face');
@@ -85,14 +87,11 @@ function chooseCard(element, index) {
             firstCardElement = undefined;
         }, 1000);
     }
-    countFlippedCards()
+    setTimeout(countFlippedCards, 500)
 }
 
 function countFlippedCards() {
-    console.log(numberOfCheckedCards)
-    console.log(deckOfCards.length)
-    if (numberOfCheckedCards.length === deckOfCards.length) {
-        console.log('vim aq')
-        alert('you win!')
+    if (numberOfCheckedCards === deckOfCards.length) {
+        alert(`Você ganhou em ${numberOfPlays} jogadas!`)
     }
 }
