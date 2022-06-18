@@ -73,7 +73,7 @@ function chooseCard(element, index) {
         return;
 
     }
-    
+
     numberOfPlays += 1;
     secondFace.classList.remove('hidden');
     img.classList.add('hidden');
@@ -114,7 +114,17 @@ function countFlippedCards() {
         alert(`Você ganhou em ${numberOfPlays} jogadas!`)
         clearInterval(idInterval);
         idInterval = undefined;
+        playAgain();
     }
-
     lockCards = false;
 }
+
+function playAgain(){
+    let answer = prompt('Você quer jogar novamente? (sim ou não)');
+            if (answer === 'sim'){
+                window.location.reload();
+            } else{
+                alert('Obrigado por jogar!')
+            }
+}
+
