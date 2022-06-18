@@ -8,7 +8,11 @@ const listOfCards = [
     "p7.gif"
 ]
 let numberOfCards = prompt("Quantas cartas você quer utilizar?");
-let chosenCards = [];
+let deckOfCards = [];
+let firstCard;
+let secondCard;
+let numberOfCheckedCards = 0;
+
 
 function checkNumberOfCards() {
     while (numberOfCards < 4 || numberOfCards > 14 || numberOfCards % 2 !== 0) {
@@ -21,10 +25,10 @@ checkNumberOfCards()
 
 function chooseCards() {
     for (let i = 0; i < numberOfCards / 2; i++) {
-        chosenCards.push(listOfCards[i]);
-        chosenCards.push(listOfCards[i]);
+        deckOfCards.push(listOfCards[i]);
+        deckOfCards.push(listOfCards[i]);
     }
-    chosenCards.sort(sortCards)
+    deckOfCards.sort(sortCards)
     displayCards()
 }
 
@@ -35,31 +39,48 @@ function sortCards() {
 function displayCards() {
     const ul = document.querySelector("ul");
 
-    for (let i = 0; i < chosenCards.length; i++) {
-        const templateLi = `<li class="display-face" onclick="chooseCard(this)"><img class="front-face" src="./img/front.png"><img class="second-face hidden" src="./img/${chosenCards[i]}"></li>`
+    for (let i = 0; i < deckOfCards.length; i++) {
+        const templateLi = `<li class="display-face" onclick="chooseCard(this, ${i})"><img class="front-face" src="./img/front.png"><img class="second-face hidden" src="./img/${deckOfCards[i]}"></li>`
         ul.innerHTML += templateLi;
     }
 }
 
-function chooseCard(element) {
-    const secondFace = element.querySelector('.second-face')
-    // const displayFace = element.querySelector('.front-face')
-    const img = element.querySelector('img')
+function chooseCard(element, index) {
+    const secondFace = element.querySelector('.second-face');
+    const img = element.querySelector('img');
 
-    if (img.classList.contains('hidden') === false) {
-        secondFace.classList.remove('hidden')
-        img.classList.add('hidden')
-        element.classList.toggle('back-face');
+    console.log({ img, secondFace })
+
+    if (index === firstCard || index === secondCard) {
+        return;
     }
 
-    checkCards()
-}
+    secondFace.classList.remove('hidden');
+    img.classList.add('hidden');
+    element.classList.add('back-face');
 
-function checkCards(){
-    //selecionar o card pela tag
-    //if (ambos são dif )
-    //     vira os dois cards
-    //     secondFace.classList.add('hidden')
-    //     displayFace.classList.remove('hidden')
-    //     element.classList.toggle('back-face');
+    if (firstCard === undefined) {
+        firstCard = index;
+        return;
+
+    } else {
+        secondCard = index;
+    }
+    console.log({ deckOfCards, c1: deckOfCards[firstCard], c2: deckOfCards[secondCard]})
+
+    if (deckOfCards[secondCard] === deckOfCards[firstCard]) {
+        numberOfCheckedCards += 2;
+        console.log('iguais')
+    } else {
+        setTimeout(function(){
+            console.log('oi')
+            secondFace.classList.add('hidden');
+            img.classList.remove('hidden');
+            element.classList.toggle('back-face');
+            firstCard = undefined;
+            secondCard = undefined;
+        },1000);
+
+    }
+
 }
