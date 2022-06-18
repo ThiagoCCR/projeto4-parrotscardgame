@@ -12,6 +12,7 @@ let deckOfCards = [];
 let firstCard;
 let secondCard;
 let numberOfCheckedCards = 0;
+let firstCardElement;
 
 
 function checkNumberOfCards() {
@@ -49,8 +50,6 @@ function chooseCard(element, index) {
     const secondFace = element.querySelector('.second-face');
     const img = element.querySelector('img');
 
-    console.log({ img, secondFace })
-
     if (index === firstCard || index === secondCard) {
         return;
     }
@@ -61,26 +60,39 @@ function chooseCard(element, index) {
 
     if (firstCard === undefined) {
         firstCard = index;
+        firstCardElement = element;
         return;
 
     } else {
         secondCard = index;
     }
-    console.log({ deckOfCards, c1: deckOfCards[firstCard], c2: deckOfCards[secondCard]})
 
     if (deckOfCards[secondCard] === deckOfCards[firstCard]) {
         numberOfCheckedCards += 2;
-        console.log('iguais')
+        firstCard = undefined;
+        secondCard = undefined;
     } else {
-        setTimeout(function(){
+        setTimeout(function () {
             console.log('oi')
             secondFace.classList.add('hidden');
             img.classList.remove('hidden');
             element.classList.toggle('back-face');
             firstCard = undefined;
             secondCard = undefined;
-        },1000);
-
+            firstCardElement.querySelector('.second-face').classList.add('hidden');
+            firstCardElement.querySelector('img').classList.remove('hidden');
+            firstCardElement.classList.toggle('back-face');
+            firstCardElement = undefined;
+        }, 1000);
     }
+    countFlippedCards()
+}
 
+function countFlippedCards() {
+    console.log(numberOfCheckedCards)
+    console.log(deckOfCards.length)
+    if (numberOfCheckedCards.length === deckOfCards.length) {
+        console.log('vim aq')
+        alert('you win!')
+    }
 }
