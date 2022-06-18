@@ -1,10 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap');
 
-*{
+* {
     box-sizing: border-box;
 }
 
-body{
+body {
+    width: 100vw;
+    height: 100vh;
     background-color: #EEF9BF;
     display: flex;
     flex-direction: column;
@@ -12,34 +14,33 @@ body{
     align-items: center;
 }
 
-h1{
+h1 {
     font-family: 'Roboto', sans-serif;
     font-weight: 700;
     color: #75B79E;
     font-size: 56px;
 }
 
-.header{
+.header {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 40px;
     margin-bottom: 40px;
     width: 100%;
 }
 
-.container{
-    background-color: red;
+.container {
     width: 1200px;
     height: 600px;
 }
-ul{
+
+ul {
     display: flex;
     flex-wrap: wrap;
     column-gap: 50px;
 }
 
-li{
+li {
     width: 117px;
     height: 146px;
     background-color: #A7E9AF;
@@ -50,20 +51,50 @@ li{
     border-radius: 5px;
 }
 
-li img{
+li img {
     width: 100px;
     height: 100px;
 
 }
 
-.hidden{
-    display:none;
+.hidden {
+    display: none;
 }
 
-.display-face{
+.display-face {
     transition: all .5s;
 }
 
-.back-face{
+.back-face {
     transform: rotateY(180deg);
+}
+
+@media (max-width:613px) {
+
+h1 {
+    font-size: 36px;
+}
+
+.container{
+    width: 600px;
+    height: 450px;
+}
+
+ul {
+    display: flex;
+    flex-wrap: none;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    overflow-y: scroll;
+ }
+
+li {
+    margin-top: 10px;
+    margin-bottom: 10px;
+ }
+
+
+
+
 }
