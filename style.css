@@ -5,7 +5,7 @@
 }
 
 body {
-    width: 100vw;
+    width: 100%;
     height: 100vh;
     background-color: #EEF9BF;
     display: flex;
@@ -36,18 +36,18 @@ h1 {
     background-color: black;
     position: absolute;
     top: 20px;
-    right: -80px;
+    right: 0;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-evenly;
-    transition: all 500ms linear;
+    transition: all 1000ms linear;
     opacity: 0;
 }
 
+
 .show-timer{
     opacity: 1;
-    right: 0;
 }
 
 .timer p{

@@ -17,7 +17,6 @@ let numberOfPlays = 0;
 let idInterval;
 let lockCards = false;
 
-
 function checkNumberOfCards() {
     while (numberOfCards < 4 || numberOfCards > 14 || numberOfCards % 2 !== 0) {
         numberOfCards = prompt("Quantas cartas você quer utilizar?");
@@ -51,12 +50,15 @@ function displayCards() {
 }
 
 function startTimer() {
-    let seconds = 0;
-    document.querySelector(".timer").classList.toggle("show-timer");
-    idInterval = setInterval(function countTime() {
-        seconds++;
-        document.querySelector('.seconds').innerHTML = seconds;
-    }, 1000);
+    setTimeout(function(){
+        let seconds = 0;
+        document.querySelector(".timer").classList.toggle("show-timer");
+        idInterval = setInterval(function countTime() {
+            seconds++;
+            document.querySelector('.seconds').innerHTML = seconds;
+        }, 1000);
+    },1000)
+   
 }
 
 function chooseCard(element, index) {
