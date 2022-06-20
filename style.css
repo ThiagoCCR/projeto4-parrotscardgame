@@ -79,6 +79,7 @@ li {
     border-radius: 5px;
     margin-top: 22px;
     margin-bottom: 22px;
+    cursor:pointer;
 }
 
 li img {
